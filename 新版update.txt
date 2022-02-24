@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>宿舍管理系統</title>
+</head>
+<body>
+
+	<font face="標楷體">
+		<b><h2><center>宿舍管理系統</b></h2></center><br></font>
+
+
+	<a href="randnum.php">前往抽籤</a><br>
+	<a href="piechart1.php">校內申請人數與總人數比例圓餅圖</a><br>
+	<a href="piechart2.php">申請人數與實際人數比例圓餅圖</a><br><br>
+	<font face="標楷體">
+	<b>資料修改</b>
+	<form method="POST" action="updatecheck.php">
+請輸入欲調整資料的學號:<input type="text" name="account" required></br></font>
+<input type='submit'>
+</form>
+
+<?php
+	include ("conn.php");
+	$id=$_COOKIE['id'];
+
+	$SQL="SELECT * FROM aplist WHERE account='$id'";
+	$result = mysqli_query($con, $SQL);
+	while ($row=mysqli_fetch_assoc($result)) 
+	{
+		if($row['type'] = '2')
+		{
+			header('Location: login.php');
+		}
+	}
+	
+?>
+
+
+
+</body>
+</html>
